@@ -1,0 +1,5 @@
+    {
+      "$schema": "https://openapi.vercel.sh/vercel.json",
+      "builds": [{ "src": "*.py", "use": "@vercel/python" }],
+      "redirects": [{ "source": "/", "destination": "/main.py" }]
+    }
