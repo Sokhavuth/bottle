@@ -1,14 +1,14 @@
 /* public/styles/base.css */
 
 :root{
-    --background-dark: #1e2933;
+    --background-dark: #0d406d;
     --background: #2b5b84;
     --background-light: #e6e8ea;
     --body: #e0a1c0;
     --panel: #ffd343;
     --body-font: 14px/1.5 Vidaloka, OdorMeanChey;
     --link: #3776ab;
-    --menu: #3776ab;
+    --menu: #1e2933;
     --playlist-part:lightgrey;
     --playlist-color: black;
     --playlist-clicked: white;

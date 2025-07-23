@@ -2,7 +2,7 @@
 
 kdict = {}
 
-kdict['siteTitle'] = 'Python Website'
+kdict['siteTitle'] = 'Khmerweb.py'
 kdict['siteLogo'] = 'E-Library'
 kdict['message'] = ''
 kdict['frontend'] = 20
