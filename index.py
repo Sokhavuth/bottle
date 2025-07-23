@@ -15,7 +15,7 @@ def attach_custom_data():
 
 @app.route('/static/<filepath:path>')
 def server_static(filepath):
-    return static_file(filepath, root='/static')
+    return static_file(filepath, root='./static')
 
 import socket    
 host = socket.getfqdn()    
