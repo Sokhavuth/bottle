@@ -1,5 +1,15 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "builds": [
     {
-      "$schema": "https://openapi.vercel.sh/vercel.json",
-      "builds": [{ "src": "*.py", "use": "@vercel/python" }],
-      "redirects": [{ "source": "/", "destination": "/" }]
+      "src": "*.py",
+      "use": "@vercel/python"
     }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ]
+}
