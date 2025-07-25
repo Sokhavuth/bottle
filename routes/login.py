@@ -16,11 +16,11 @@ def index():
 
 @app.route('/', method='POST')
 def index_post(session):
+    print('Hello!!!!')
     global kdict
     email = request.forms.get('email')
     result = userDB.checkUser(email)
     rows = result.all()
-    print(rows[0])
     if(rows != []):
         password = request.forms.get('password')
         plain_password_attempt = password.encode('UTF-8')
