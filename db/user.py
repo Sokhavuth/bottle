@@ -28,17 +28,17 @@ class UserDB:
             date = ''
         )
 
-        with engine.begin() as conn:
+        with engine.connect() as conn:
             conn.execute(stmt)
+            conn.commit()
 
     def checkUser(self, email):
         metadata_obj = db.MetaData()
         User = db.Table("User", metadata_obj, autoload_with=engine)
 
         stmt = db.select(User).where(User.c.email == email)
-        with engine.begin() as conn:
+        with engine.connect() as conn:
             result = conn.execute(stmt)
             return result
                 
-
 userDB = UserDB()

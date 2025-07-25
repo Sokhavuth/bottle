@@ -20,7 +20,6 @@ def index_post():
     global kdict
     email = request.forms.get('email')
     result = userDB.checkUser(email)
-    
     rows = result.all()
     if(rows != []):
         password = request.forms.get('password')
