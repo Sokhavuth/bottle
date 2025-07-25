@@ -16,10 +16,10 @@ def index():
 
 @app.route('/', method='POST')
 def index_post(session):
+    redirect('/admin')
     global kdict
     email = request.forms.get('email')
     result = userDB.checkUser(email)
-    return template('/admin', data=kdict)
     
     rows = result.all()
     if(rows != []):
