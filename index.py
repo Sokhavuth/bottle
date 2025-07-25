@@ -15,7 +15,6 @@ app.mount('/', index.app)
 app.mount('/login', login.app) 
 app.mount('/admin', admin.app)  
 
-
 @app.hook('before_request')
 def attach_custom_data():
     request.kdict = settings()

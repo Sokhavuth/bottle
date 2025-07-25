@@ -3,6 +3,7 @@ bcrypt==4.3.0
 bottle==0.13.4
 greenlet==3.2.3
 libsql-experimental==0.0.55
+PyJWT==2.10.1
 python-dotenv==1.1.1
 redis==6.2.0
 SQLAlchemy==2.0.41
