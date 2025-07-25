@@ -6,10 +6,10 @@ from bottle import static_file, request, Bottle
 from config import settings
 from bottle_session import SessionPlugin
 
-#plugin = SessionPlugin(cookie_lifetime=600)
-#index.app.install(plugin)
-#login.app.install(plugin)
-#admin.app.install(plugin)
+plugin = SessionPlugin(cookie_lifetime=600)
+index.app.install(plugin)
+login.app.install(plugin)
+admin.app.install(plugin)
 
 app = Bottle()
 
