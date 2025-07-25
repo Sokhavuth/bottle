@@ -18,9 +18,8 @@ def index():
 def index_post(session):
     global kdict
     email = request.forms.get('email')
-    redirect('/admin')
     result = userDB.checkUser(email)
-    print(result)
+    return template('login', data=kdict)
     
     rows = result.all()
     if(rows != []):
