@@ -1,17 +1,26 @@
 #main.py
-from routes import frontend
+from routes import index
+from routes.admin import index as admin
+from routes import login
 from bottle import static_file, request, Bottle
-from db.connection import engine
-from config import kdict
+from config import settings
+from bottle_session import SessionPlugin
+
+plugin = SessionPlugin(cookie_lifetime=600, cookie_name='session')
+index.app.install(plugin)
+login.app.install(plugin)
+admin.app.install(plugin)
 
 app = Bottle()
 
-app.mount('/', frontend.app) 
+app.mount('/', index.app)
+app.mount('/login', login.app) 
+app.mount('/admin', admin.app)  
+
 
 @app.hook('before_request')
 def attach_custom_data():
-    request.engine = engine
-    request.kdict = kdict
+    request.kdict = settings()
 
 @app.route('/static/<filepath:path>')
 def server_static(filepath):
