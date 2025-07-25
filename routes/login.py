@@ -27,7 +27,7 @@ def index_post(session):
         password = user[3]
         hashed_password = password.encode('UTF-8')
         if bcrypt.checkpw(plain_password_attempt, hashed_password):
-            session['user'] = json.dumps({'id':user[0], 'name':user[1], 'role':user[4]})
+            #session['user'] = json.dumps({'id':user[0], 'name':user[1], 'role':user[4]})
             redirect('/admin')
         else:
             kdict['message'] = 'Email ឬ​ពាក្យ​សំងាត់​មិន​ត្រឹមត្រូវ​ទេ!'
