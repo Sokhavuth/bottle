@@ -1,7 +1,8 @@
-from bottle import Bottle, template, request, redirect
+from bottle import Bottle, template, request, redirect, response
 from db.user import userDB
 import bcrypt
-import json
+import jwt
+import os, datetime
 
 app = Bottle()
 kdict = {}
@@ -28,7 +29,15 @@ def index_post():
         password = user[3]
         hashed_password = password.encode('UTF-8')
         if bcrypt.checkpw(plain_password_attempt, hashed_password):
-            #session['user'] = json.dumps({'id':user[0], 'name':user[1], 'role':user[4]})
+            payload = {
+                "id": user[0],
+                'name':user[1],
+                'role':user[4],
+                "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=12)
+            }
+            SECRET_KEY = os.environ.get("SECRET_KEY")
+            encoded_jwt = jwt.encode(payload, SECRET_KEY, algorithm="HS256")
+            response.set_cookie('access_token', encoded_jwt, path='/')
             redirect('/admin')
         else:
             kdict['message'] = 'Email ឬ​ពាក្យ​សំងាត់​មិន​ត្រឹមត្រូវ​ទេ!'

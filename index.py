@@ -4,12 +4,10 @@ from routes.admin import index as admin
 from routes import login
 from bottle import static_file, request, Bottle
 from config import settings
-#from bottle_session import SessionPlugin
-
-#plugin = SessionPlugin(cookie_lifetime=600)
-#index.app.install(plugin)
-#login.app.install(plugin)
-#admin.app.install(plugin)
+import os, jwt
+from jwt.exceptions import ExpiredSignatureError, InvalidTokenError
+from dotenv import load_dotenv
+load_dotenv()
 
 app = Bottle()
 
@@ -21,6 +19,18 @@ app.mount('/admin', admin.app)
 @app.hook('before_request')
 def attach_custom_data():
     request.kdict = settings()
+    cookie_value = request.get_cookie('access_token')
+    if cookie_value:
+        try:
+            SECRET_KEY = os.environ.get("SECRET_KEY")
+            decoded_payload = jwt.decode(cookie_value, SECRET_KEY, algorithms=["HS256"])
+            request.user = decoded_payload
+        except ExpiredSignatureError:
+            print("Token has expired.")
+        except InvalidTokenError:
+            print("Invalid token or signature.")
+    else:
+        request.user = None
 
 @app.route('/static/<filepath:path>')
 def server_static(filepath):

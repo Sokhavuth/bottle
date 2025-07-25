@@ -5,7 +5,7 @@
             <a class="letter" href="/">{{data['siteTitle']}}</a>
         </div>
         <div class="search"><input type="text" /><input type="button" value="Search" /></div>
-        <div class="login"><a href="/login">ចូល​ក្នុង</a> | <a href="/admin/user">ចុះ​ឈ្មោះ</a></div>
+        <div class="login"><a href="/admin">ចូល​ក្នុង</a> | <a href="/admin/user">ចុះ​ឈ្មោះ</a></div>
     </div>
 </section>
 

@@ -1,7 +1,6 @@
 async-timeout==5.0.1
 bcrypt==4.3.0
 bottle==0.13.4
-bottle-session==1.0
 greenlet==3.2.3
 libsql-experimental==0.0.55
 python-dotenv==1.1.1
