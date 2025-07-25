@@ -20,6 +20,7 @@ def index_post(session):
     email = request.forms.get('email')
     result = userDB.checkUser(email)
     rows = result.all()
+    print(rows[0])
     if(rows != []):
         password = request.forms.get('password')
         plain_password_attempt = password.encode('UTF-8')
