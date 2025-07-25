@@ -1,4 +1,6 @@
-#main.py
+#index.py
+from dotenv import load_dotenv
+load_dotenv()
 from routes import index
 from routes.admin import index as admin
 from routes import login
@@ -6,8 +8,6 @@ from bottle import static_file, request, Bottle
 from config import settings
 import os, jwt
 from jwt.exceptions import ExpiredSignatureError, InvalidTokenError
-from dotenv import load_dotenv
-load_dotenv()
 
 app = Bottle()
 

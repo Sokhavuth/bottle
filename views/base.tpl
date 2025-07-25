@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/static/scripts/highlight/styles/default.css">
     <script src="/static/scripts/highlight/highlight.min.js"></script>
     <script src="/static/scripts/highlightjs-line-numbers.min.js"></script>
+    
   </head>
   <body>
     {{!base}}
