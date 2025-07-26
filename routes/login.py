@@ -19,8 +19,7 @@ def index():
 def index_post():
     global kdict
     email = request.forms.get('email')
-    result = userDB.checkUser(email)
-    rows = result.all()
+    rows = userDB.checkUser(email)
     if(rows != []):
         password = request.forms.get('password')
         plain_password_attempt = password.encode('UTF-8')

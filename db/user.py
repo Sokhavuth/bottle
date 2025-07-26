@@ -1,44 +1,30 @@
 import uuid
 import bcrypt
-from .connection import engine
-import sqlalchemy as db
+from .connection import conn
 
 class UserDB:
     def __init__(self):
         pass
 
     def createRootUser(self):
-        password = "xxxxxxxxx"
+        password = "xxxxxxxxxxx"
         password_bytes = password.encode('utf-8')
         salt = bcrypt.gensalt()
         hashed_password = bcrypt.hashpw(password_bytes, salt)
         password = hashed_password.decode('utf-8')
 
-        metadata_obj = db.MetaData()
-        User = db.Table("User", metadata_obj, autoload_with=engine)
+        user_data = (uuid.uuid4().hex, 'Sokhavuth', 'sokhavuth@khmerweb.app', password, 'Admin', '', '', '')
 
-        stmt = db.insert(User).values(
-            id = uuid.uuid4().hex,
-            name = 'Sokhavuth',
-            email = 'xxxxxxxxxxxx',
-            password = password,
-            role = 'Admin',
-            thumb = '',
-            content = '',
-            date = ''
-        )
+        conn.execute("INSERT INTO User VALUES (?,?,?,?,?,?,?,?);", user_data)
+        conn.commit()
 
-        with engine.connect() as conn:
-            conn.execute(stmt)
-            conn.commit()
+        conn.sync()
+        
 
     def checkUser(self, email):
-        metadata_obj = db.MetaData()
-        User = db.Table("User", metadata_obj, autoload_with=engine)
-
-        stmt = db.select(User).where(User.c.email == email)
-        with engine.connect() as conn:
-            result = conn.execute(stmt)
-            return result
+        sql = f"SELECT * FROM User WHERE email='{email}'"
+        result = conn.execute(sql)
+        rows = result.fetchall()
+        return rows
                 
 userDB = UserDB()
